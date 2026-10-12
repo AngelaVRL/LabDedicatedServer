@@ -18,6 +18,12 @@ public class PlayerColorAssigner : MonoBehaviour
 
     private void Start()
     {
+         if (settings == null || localRenderer == null || remoteRenderer == null)
+        {
+            Debug.LogError("PlayerColorAssigner is missing references in the Inspector.", this);
+            enabled = false;
+            return;
+        }
         localRenderer.material.color = ResolveColor(settings.LocalPlayerId);
         remoteRenderer.material.color = ResolveColor(settings.RemotePlayerId);
     }
