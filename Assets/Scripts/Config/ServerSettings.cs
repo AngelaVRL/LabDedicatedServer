@@ -1,14 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class ServerSettings : MonoBehaviour
 {
     private const string PlayerRoute = "server";
+    private const string GamesRoute = "games";
+    private const string EventsRoute = "events";
 
-    [Header("Server")]
+    [Header("Position service")]
     [SerializeField] private string baseUrl = "http://localhost:5005";
+
+    [Header("Event service")]
+    [SerializeField] private string eventServiceBaseUrl = "http://localhost:5006";
 
     [Header("Session")]
     [SerializeField] private string gameId = "game1";
@@ -25,14 +28,29 @@ public class ServerSettings : MonoBehaviour
 
     public string BuildPlayerUrl(string playerId)
     {
-        string escapedGameId = UnityWebRequest.EscapeURL(gameId);
         string escapedPlayerId = UnityWebRequest.EscapeURL(playerId);
-        return $"{baseUrl}/{PlayerRoute}/{escapedGameId}/{escapedPlayerId}";
+        return $"{baseUrl}/{PlayerRoute}/{EscapedGameId()}/{escapedPlayerId}";
+    }
+
+    public string BuildEventsUrl()
+    {
+        return $"{eventServiceBaseUrl}/{GamesRoute}/{EscapedGameId()}/{EventsRoute}";
+    }
+
+    public string BuildEventsUrl(long since)
+    {
+        return $"{BuildEventsUrl()}?since={since}";
+    }
+
+    private string EscapedGameId()
+    {
+        return UnityWebRequest.EscapeURL(gameId);
     }
 
     private void Awake()
     {
         bool hasMissingValue = string.IsNullOrWhiteSpace(baseUrl)
+            || string.IsNullOrWhiteSpace(eventServiceBaseUrl)
             || string.IsNullOrWhiteSpace(gameId)
             || string.IsNullOrWhiteSpace(localPlayerId)
             || string.IsNullOrWhiteSpace(remotePlayerId);
