@@ -5,6 +5,9 @@ public class EventPayload
 {
     [JsonProperty("isOn")]
     public bool IsOn { get; set; }
+
+    [JsonProperty("index")]
+    public int Index { get; set; }
 }
 
 public class GameEventRequest
