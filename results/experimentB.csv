@@ -1,0 +1,4 @@
+intervalMs,distinctValuesSeen,expectedValues
+50,8,20
+200,4,20
+1000,2,20

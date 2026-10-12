@@ -1,0 +1,4 @@
+intervalMs,avgRttMs,validSamples,systemRequestsPerSecond
+50,22.72,100,55.00
+200,21.26,100,18.08
+1000,23.10,100,3.91

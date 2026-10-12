@@ -1,0 +1,4 @@
+intervalMs,eventsReceived,expectedEvents,inOrder,duplicates
+50,20,20,True,0
+200,20,20,True,0
+1000,20,20,True,0
