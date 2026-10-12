@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 313286457}
   - component: {fileID: 313286456}
   - component: {fileID: 313286455}
+  - component: {fileID: 313286458}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -324,6 +325,27 @@ MonoBehaviour:
   localPlayerId: playerA
   remotePlayerId: playerB
   pollIntervalMs: 200
+--- !u!114 &313286458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313286453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561daf896dc2da146994dbe866aa8336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerColorAssigner
+  settings: {fileID: 313286457}
+  localRenderer: {fileID: 173262294}
+  remoteRenderer: {fileID: 701380767}
+  playerColors:
+  - playerId: playerA
+    color: {r: 0.14117648, g: 0.21568629, b: 0.8392157, a: 0}
+  - playerId: playerB
+    color: {r: 0.7176471, g: 0.03529412, b: 0, a: 0}
+  fallbackColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &701380765
 GameObject:
   m_ObjectHideFlags: 0
