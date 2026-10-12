@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -58,7 +56,7 @@ public class LatencyExperiment : MonoBehaviour
             Debug.Log($"Interval {intervalMs} ms: average RTT {averageMs:F2} ms ({samplesMs.Count} valid samples)");
         }
 
-        SaveResults(lines);
+        ExperimentResultWriter.Save(OutputFileName, lines);
     }
 
     private IEnumerator MeasureGet(string url, List<float> samplesMs)
@@ -74,20 +72,6 @@ public class LatencyExperiment : MonoBehaviour
         }
     }
 
-    private void SaveResults(List<string> lines)
-    {
-        string path = Path.Combine(Application.persistentDataPath, OutputFileName);
-
-        try
-        {
-            File.WriteAllLines(path, lines);
-            Debug.Log($"Results saved to {path}");
-        }
-        catch (Exception exception)
-        {
-            Debug.LogError($"Results could not be saved: {exception.Message}", this);
-        }
-    }
 
     private static float Average(List<float> values)
     {
